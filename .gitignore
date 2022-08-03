@@ -4,6 +4,8 @@
 .turbo
 .next
 dist
+kvet-next-layout-v*.tgz
+packages/next-layout/README.md
 
 # dependencies
 node_modules

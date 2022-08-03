@@ -4,7 +4,7 @@ NextJS lacks layouting solution for a long time. And however the NextJS team int
 
 The idea is pretty simple. And it was already described here: https://nextjs.org/docs/basic-features/layouts. But there is one problem. It is not so useful without hooks in layout. Hooks can be used to fetch data, check validity of route queries and so on. Also, it allows to trully decouple layout components.
 
-Please check the demo:
+Please check the demo: https://next-layout-taupe.vercel.app/
 
 ## Basic usage
 
@@ -70,3 +70,7 @@ export default pageComponentWithLayout(
 NOTE:
 - It is required to wrap any React hook usage with a `mountHook` wrapper
 - It is recommended to specify React keys for significant parts of layout to prevent re-render.
+
+## License
+
+Released under the [MIT License](https://www.opensource.org/licenses/mit-license.php).
