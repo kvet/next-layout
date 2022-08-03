@@ -1,77 +1,72 @@
-# Turborepo starter
+# NextJS Layout Component
 
-This is an official Yarn v1 starter turborepo.
+NextJS lacks layouting solution for a long time. And however the NextJS team intruduced Layouts RFC, we still need a solution right now. Introducing my vision of simple and powerfull NextJS layout component.
 
-## What's inside?
+The idea is pretty simple. And it was already described here: https://nextjs.org/docs/basic-features/layouts. But there is one problem. It is not so useful without hooks in layout. Hooks can be used to fetch data, check validity of route queries and so on. Also, it allows to trully decouple layout components.
 
-This turborepo uses [Yarn](https://classic.yarnpkg.com/lang/en/) as a package manager. It includes the following packages/apps:
+Please check the demo:
 
-### Apps and Packages
+## Basic usage
 
-- `docs`: a [Next.js](https://nextjs.org) app
-- `web`: another [Next.js](https://nextjs.org) app
-- `ui`: a stub React component library shared by both `web` and `docs` applications
-- `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `tsconfig`: `tsconfig.json`s used throughout the monorepo
+### Installation
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+```bash
+# npm
+npm i @kvet/next-layout
 
-### Utilities
-
-This turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-## Setup
-
-This repository is used in the `npx create-turbo` command, and selected when choosing which package manager you wish to use with your monorepo (Yarn).
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-yarn run build
+# yarn
+yarn add @kvet/next-layout
 ```
 
-### Develop
+### Add the layout component to a custom '_app.tsx' file
 
-To develop all apps and packages, run the following command:
+```tsx
+// pages/_app.tsx
 
-```
-cd my-turborepo
-yarn run dev
-```
+import { AppPropsWithLayout, Layout } from "@kvet/next-layout";
 
-### Remote Caching
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.org/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
+export default function App({ Component, pageProps }: AppPropsWithLayout) {
+  return <Layout pageComponent={Component} pageProps={pageProps} />;
+}
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+### Adopt layouts for pages
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your turborepo:
+```tsx
+// pages/index.tsx
 
+import { pageComponentWithLayout } from "@kvet/next-layout";
+import { useEffect, useState } from "react";
+import Breadcrumbs from "../components/Breadcrumbs";
+import Layout from "../components/Layout";
+
+export default pageComponentWithLayout(
+  function Page() {
+    return <main>This is the page component</main>;
+  },
+  ({ pageComponent: PageComponent, pageProps, mountHook }) => {
+    // Data loading simulation
+    const [pathParts, setPathParts] = mountHook(() =>
+      useState<{ title: string; path: string }[]>([])
+    );
+    mountHook(() =>
+      useEffect(() => {
+        setTimeout(() => {
+          setPathParts([{ title: "Main", path: "/" }]);
+        }, 1000);
+      }, [])
+    );
+
+    return (
+      <Layout key="layout">
+        <Breadcrumbs key="breadcrumbs" pathParts={pathParts} />
+        <PageComponent {...pageProps} />
+      </Layout>
+    );
+  }
+);
 ```
-npx turbo link
-```
 
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Pipelines](https://turborepo.org/docs/core-concepts/pipelines)
-- [Caching](https://turborepo.org/docs/core-concepts/caching)
-- [Remote Caching](https://turborepo.org/docs/core-concepts/remote-caching)
-- [Scoped Tasks](https://turborepo.org/docs/core-concepts/scopes)
-- [Configuration Options](https://turborepo.org/docs/reference/configuration)
-- [CLI Usage](https://turborepo.org/docs/reference/command-line-reference)
+NOTE:
+- It is required to wrap any React hook usage with a `mountHook` wrapper
+- It is recommended to specify React keys for significant parts of layout to prevent re-render.

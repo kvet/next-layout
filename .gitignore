@@ -3,8 +3,7 @@
 # build
 .turbo
 .next
-build_production
-build_local
+dist
 
 # dependencies
 node_modules

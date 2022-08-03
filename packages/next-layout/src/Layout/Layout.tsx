@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import { AppProps } from 'next/app';
-import { NextRouter, useRouter } from 'next/router';
-import { ComponentType, memo, ReactElement, useMemo, useRef } from 'react';
+import { useRouter } from 'next/router';
+import React, { ComponentType, memo, ReactElement, useMemo, useRef } from 'react';
 
 import useUpdate from '../hooks_general/useUpdate';
 import LayoutHookMounter from './LayoutHookMounter';
