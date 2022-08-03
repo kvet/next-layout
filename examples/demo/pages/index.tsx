@@ -11,7 +11,7 @@ export default pageComponentWithLayout(
     return (
       <main className="py-8 prose mx-auto max-w-4xl">
         <h1>The main page</h1>
-        <p>Here is used the simplest layout.</p>
+        <p>Here is used the simplest layout:</p>
         <Highlight>
           {`
   ({ pageComponent: PageComponent, pageProps, mountHook }) => {
@@ -48,10 +48,21 @@ export default pageComponentWithLayout(
             I'll google for you.
           </a>
         </p>
+        <br />
         <p>
-          Check the page with sidebar that has nested fullscreen route:{" "}
+          Please check the page with sidebar that has nested fullscreen route:{" "}
           <Link href="/sidebar">
             <a>Page with a sidebar</a>
+          </Link>
+        </p>
+        <p>
+          Please check the page with error hadling that alternates layout:{" "}
+          <Link href="/error">
+            <a>Page without error</a>
+          </Link>
+          {", "}
+          <Link href="/error?show_error=true">
+            <a>Page with error</a>
           </Link>
         </p>
       </main>

@@ -71,6 +71,43 @@ NOTE:
 - It is required to wrap any React hook usage with a `mountHook` wrapper
 - It is recommended to specify React keys for significant parts of layout to prevent re-render.
 
+## Error handling
+
+The lib allows to intercept route params and show custom errors.
+
+```tsx
+// pages/with-error.tsx
+
+import { pageComponentWithLayout } from "@kvet/next-layout";
+import Layout from "../components/Layout";
+import Error from "next/error";
+
+export default pageComponentWithLayout(
+  function Page() {
+    return <main>This is the page component</main>;
+  },
+  ({ pageComponent: PageComponent, pageProps, mountHook }) => {
+    const router = mountHook(() => useRouter());
+
+    if (!router.isReady) {
+      return null;
+    }
+
+    if (router.query["show_error"]) {
+      return (
+        <Error statusCode={404} />
+      );
+    }
+
+    return (
+      <Layout key="layout">
+        <PageComponent {...pageProps} />
+      </Layout>
+    );
+  }
+);
+```
+
 ## License
 
 Released under the [MIT License](https://www.opensource.org/licenses/mit-license.php).

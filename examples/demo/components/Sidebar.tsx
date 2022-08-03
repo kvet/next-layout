@@ -13,7 +13,7 @@ function Sidebar({
   return (
     <div className="flex flex-col-reverse md:flex-row">
       <div className="md:w-64 flex-shrink-0 border-r border-gray-300 py-4 group">
-        <div className="text-center text-xs text-gray-600 opacity-0 transition-opacity group-hover:opacity-100">
+        <div className="text-center text-xs text-gray-600 opacity-20 transition-opacity group-hover:opacity-100">
           This is a sidebar.{" "}
           <span className="text-gray-400">(Rendered at: {date.current})</span>
         </div>
