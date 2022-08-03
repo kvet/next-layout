@@ -1,5 +1,15 @@
 # NextJS Layout Component
 
+![npm](https://img.shields.io/npm/v/@kvet/next-layout)
+![npm bundle size](https://img.shields.io/bundlephobia/min/@kvet/next-layout)
+![npm peer dependency version](https://img.shields.io/npm/dependency-version/@kvet/next-layout/peer/next)
+![npm peer dependency version](https://img.shields.io/npm/dependency-version/@kvet/next-layout/peer/react)
+![NPM](https://img.shields.io/npm/l/@kvet/next-layout)
+
+The simple and powerful NextJS layout solution
+
+## Motivation
+
 NextJS lacks layouting solution for a long time. And however the NextJS team intruduced Layouts RFC, we still need a solution right now. Introducing my vision of simple and powerfull NextJS layout component.
 
 The idea is pretty simple. And it was already described here: https://nextjs.org/docs/basic-features/layouts. But there is one problem. It is not so useful without hooks in layout. Hooks can be used to fetch data, check validity of route queries and so on. Also, it allows to trully decouple layout components.
