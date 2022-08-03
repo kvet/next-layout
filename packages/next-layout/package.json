@@ -1,7 +1,7 @@
 {
   "name": "@kvet/next-layout",
   "description": "A layout component for NextJS",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "license": "MIT",
   "author": {
     "name": "Iurii Orlov",
@@ -21,6 +21,11 @@
   "typings": "dist/next-layout.d.ts",
   "files": [
     "dist/"
+  ],
+  "keywords": [
+    "next",
+    "nextjs",
+    "layout"
   ],
   "scripts": {
     "build": "rollup -c",
