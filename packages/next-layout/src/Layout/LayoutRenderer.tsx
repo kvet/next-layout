@@ -1,6 +1,6 @@
-import { ComponentType, MutableRefObject, ReactElement } from "react";
+import type { ComponentType, MutableRefObject, ReactElement } from "react";
 
-import { GetLayoutFn } from "./Layout";
+import type { GetLayoutFn } from "./Layout";
 
 type LayoutRendererProps = {
   getLayout: GetLayoutFn<any>;

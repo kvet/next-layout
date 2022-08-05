@@ -14,6 +14,8 @@ export default pageComponentWithLayout(
         <p>Here is used the simplest layout:</p>
         <Highlight>
           {`
+export default pageComponentWithLayout(
+  function Page() { /* ... */ },
   ({ pageComponent: PageComponent, pageProps, mountHook }) => {
     // Data loading simulation
     const [pathParts, setPathParts] = mountHook(() =>
@@ -35,6 +37,7 @@ export default pageComponentWithLayout(
       </Layout>
     );
   }
+);
           `}
         </Highlight>
         <p>
@@ -44,8 +47,9 @@ export default pageComponentWithLayout(
           <a
             href="https://www.google.com/search?q=react+key+prop+definition"
             target="_blank"
+            rel="noreferrer"
           >
-            I'll google for you.
+            I&apos;ll google for you.
           </a>
         </p>
         <br />
@@ -62,6 +66,16 @@ export default pageComponentWithLayout(
           </Link>
           {", "}
           <Link href="/error?show_error=true">
+            <a>Page with error</a>
+          </Link>
+        </p>
+        <p>
+          Please check the page with params validation that alternates layout:{" "}
+          <Link href="/query-parsing/1">
+            <a>Page without error</a>
+          </Link>
+          {", "}
+          <Link href="/query-parsing/test">
             <a>Page with error</a>
           </Link>
         </p>

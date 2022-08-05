@@ -21,6 +21,9 @@ function Navbar() {
         <Link href="/error">
           <a className="text-gray-800 text-base underline">Page with error handling</a>
         </Link>
+        <Link href="/query-parsing/1">
+          <a className="text-gray-800 text-base underline">Page with query parsing</a>
+        </Link>
       </nav>
     </div>
   );

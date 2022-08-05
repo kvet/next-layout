@@ -1,7 +1,7 @@
-import { MutableRefObject } from 'react';
+import type { MutableRefObject } from 'react';
 
 import useIsomorphicLayoutEffect from '../hooks_general/useIsomorphicLayoutEffect';
-import { GetLayoutFn } from './Layout';
+import type { GetLayoutFn } from './Layout';
 
 type LayoutHookMounterProps = {
   getLayout: GetLayoutFn<any>;

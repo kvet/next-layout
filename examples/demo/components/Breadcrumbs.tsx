@@ -11,7 +11,7 @@ function Breadcrumbs({
   return (
     <div className="border-b border-gray-300 pt-2 pb-4 px-8 group">
       <div className="text-gray-600 text-xs text-start opacity-20 -mt-1 -mb-1 transition-opacity group-hover:opacity-100">
-        This is breadcrumbs. Note that it is not a "god" component. Data loading
+        This is breadcrumbs. Note that it is not a &quot;god&quot; component. Data loading
         is decoupled by the use of hooks inside the page layout.{" "}
         <span className="text-gray-400">
           (Breadcrumbs rendered at: {date.current})

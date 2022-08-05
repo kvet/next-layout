@@ -11,11 +11,12 @@ function Layout({ children }: { children: ReactNode }): ReactElement {
         <a
           href="https://www.npmjs.com/package/@kvet/next-layout"
           target="_blank"
+          rel="noreferrer"
           className="underline"
         >
-          the "
-          <span className="font-bold text-blue-600">@kvet/next-layout</span>"
-          package
+          the &quot;
+          <span className="font-bold text-blue-600">@kvet/next-layout</span>
+          &quot; package
         </a>
         . Note that the layout component maintains its state on the route change
         event.{" "}

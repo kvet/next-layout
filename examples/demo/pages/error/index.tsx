@@ -18,6 +18,8 @@ export default pageComponentWithLayout(
         </p>
         <Highlight>
           {`
+export default pageComponentWithLayout(
+  function Page() { /* ... */ },
   ({ pageComponent: PageComponent, pageProps, mountHook }) => {
     const router = mountHook(() => useRouter());
 
@@ -49,10 +51,11 @@ export default pageComponentWithLayout(
       </Layout>
     );
   }
+);
           `}
         </Highlight>
         <p>
-          Check the page with sidebar that has nested fullscreen route:{" "}
+          Check error handling in action:{" "}
           <Link href="/error?show_error=true">
             <a>Page with error</a>
           </Link>
@@ -74,7 +77,7 @@ export default pageComponentWithLayout(
             <h1>Sorry, something is wrong</h1>
             <p>
               This is a basic error handling. Return to the page without the
-              '?show_error=true' query string.{" "}
+              &quot;?show_error=true&quot; query string.{" "}
               <Link href="/error">
                 <a>Page without error</a>
               </Link>

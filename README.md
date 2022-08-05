@@ -118,6 +118,55 @@ export default pageComponentWithLayout(
 );
 ```
 
+## Route params parsing and validation
+
+The lib ships with a simple tool to parse and validate route query params. Here is the example:
+
+```tsx
+// pages/with-param-validation/[id].tsx
+
+import { pageComponentWithLayout } from "@kvet/next-layout";
+import Layout from "../components/Layout";
+import Error from "next/error";
+
+type PageProps = { id: number }; // Page component props
+type GlobalPageProps = {}; // Global page props received from the '_app.tsx'
+
+export default pageComponentWithLayout<PageProps, GlobalPageProps>(
+  function Page({ id }) {
+    return <main>This is the page component with the id '{id}'</main>;
+  },
+  ({ pageComponent: PageComponent, pageProps, mountHook }) => {
+    const resolvedPageProps = mountHook(() =>
+      useRouteParamsResolver(pageProps, {
+        id: (router) => safeParsePositiveIntegerParam(router.query.id),
+      })
+    );
+
+    if (resolvedPageProps.status === 'loading') {
+      return null;
+    }
+
+    if (resolvedPageProps.status === 'error') {
+      return (
+        <Error statusCode={404} />
+      );
+    }
+
+    return (
+      <Layout key="layout">
+        <PageComponent {...resolvedPageProps.props} />
+      </Layout>
+    );
+  }
+);
+```
+
+There are the following parsers available:
+
+- `safeParseStringParam(router.query[key])` - ensures that the passed query param is a string
+- `safeParsePositiveIntegerParam(router.query[key])` - ensures that the passed query param is a positive integer
+
 ## License
 
 Released under the [MIT License](https://www.opensource.org/licenses/mit-license.php).

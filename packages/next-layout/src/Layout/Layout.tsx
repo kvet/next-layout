@@ -1,45 +1,46 @@
-import { NextPage } from 'next';
-import { AppProps } from 'next/app';
-import { useRouter } from 'next/router';
-import React, { ComponentType, memo, ReactElement, useMemo, useRef } from 'react';
+import type { NextPage } from "next";
+import type { AppProps } from "next/app";
+import { useRouter } from "next/router";
+import React, { memo, useMemo, useRef } from "react";
+import type { ReactElement, ComponentType } from "react";
 
-import useUpdate from '../hooks_general/useUpdate';
-import LayoutHookMounter from './LayoutHookMounter';
-import LayoutRenderer from './LayoutRenderer';
+import useUpdate from "../hooks_general/useUpdate";
+import LayoutHookMounter from "./LayoutHookMounter";
+import LayoutRenderer from "./LayoutRenderer";
 
 export type MountHookFn = <T extends () => unknown>(hookCb: T) => ReturnType<T>;
 
-export type GetLayoutFn<T extends Record<string, unknown>> = ({
+export type GetLayoutFn<
+  PageProps extends Record<string, unknown> = {},
+  ProvidedPageProps extends Partial<PageProps> = Partial<PageProps>
+> = ({
   pageComponent,
   pageProps,
   mountHook,
 }: {
-  pageComponent: ComponentType<T>,
-  pageProps: T,
-  mountHook: MountHookFn,
+  pageComponent: ComponentType<PageProps>;
+  pageProps: ProvidedPageProps;
+  mountHook: MountHookFn;
 }) => ReactElement | null;
 
-export type PageComponentWithLayout<T extends Record<string, unknown> = {}> = NextPage<T> & {
-  getLayout?: GetLayoutFn<T>;
-};
-
-export type AppPropsWithLayout<T extends Record<string, unknown> = {}> = AppProps & {
-  PageComponent: PageComponentWithLayout<T>;
+export type PageComponentWithLayout<
+  PageProps extends Record<string, unknown> = {},
+  ProvidedPageProps extends Partial<PageProps> = Partial<PageProps>
+> = NextPage<PageProps> & {
+  getLayout?: GetLayoutFn<PageProps, ProvidedPageProps>;
 };
 
 const DEFAULT_LAYOUT: GetLayoutFn<any> = ({
   pageComponent: PageComponent,
   pageProps,
-}) => (
-  <PageComponent {...pageProps} />
-);
+}) => <PageComponent {...pageProps} />;
 
 export type LayoutProps<T extends Record<string, unknown>> = {
   pageComponent: PageComponentWithLayout<T>;
   pageProps?: T;
 };
 
-function Layout<T extends Record<string, unknown>>({
+function Layout<T extends Record<string, unknown> = {}>({
   pageComponent: PageComponent,
   pageProps,
 }: LayoutProps<T>): ReactElement | null {
@@ -80,11 +81,8 @@ function Layout<T extends Record<string, unknown>>({
 
 export default memo(Layout) as typeof Layout;
 
-export function pageComponentWithLayout<T extends Record<string, unknown> = {}>(
-  pageComponent: ComponentType<T & Record<string, unknown>>,
-  getLayout: GetLayoutFn<T & Record<string, unknown>>,
-): PageComponentWithLayout<T> {
-  const typedPageComponent: PageComponentWithLayout<T> = pageComponent;
-  typedPageComponent.getLayout = getLayout;
-  return typedPageComponent;
-}
+export type AppPropsWithLayout<T extends Record<string, unknown> = {}> =
+  AppProps & {
+    PageComponent: PageComponentWithLayout<T>;
+  };
+

@@ -13,6 +13,8 @@ export default pageComponentWithLayout(
         <p>Even if the page is nested, we can omit parent layout parts.</p>
         <Highlight>
           {`
+export default pageComponentWithLayout(
+  function Page() { /* ... */ },
   ({ pageComponent: PageComponent, pageProps, mountHook }) => {
     // Data loading simulation
     const [pathParts, setPathParts] = mountHook(() =>
@@ -37,6 +39,7 @@ export default pageComponentWithLayout(
       </Layout>
     );
   }
+);
           `}
         </Highlight>
         <p>

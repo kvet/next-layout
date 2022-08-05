@@ -15,6 +15,8 @@ export default pageComponentWithLayout(
         <p>Here is used the layout with sidebar.</p>
         <Highlight>
           {`
+export default pageComponentWithLayout(
+  function Page() { /* ... */ },
   ({ pageComponent: PageComponent, pageProps, mountHook }) => {
     // Data loading simulation
     const [pathParts, setPathParts] = mountHook(() =>
@@ -57,6 +59,7 @@ export default pageComponentWithLayout(
       </Layout>
     );
   }
+);
           `}
         </Highlight>
         <p>
