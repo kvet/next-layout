@@ -1,7 +1,7 @@
 {
   "name": "@kvet/next-layout",
   "description": "A layout component for NextJS",
-  "version": "0.0.3",
+  "version": "0.1.0-experimental.2",
   "license": "MIT",
   "author": {
     "name": "Iurii Orlov",
@@ -19,9 +19,16 @@
   "main": "dist/next-layout.js",
   "module": "dist/next-layout.mjs",
   "typings": "dist/next-layout.d.ts",
+  "browser": {
+    "next/router": "next/router.js"
+  },
+  "sideEffects": false,
   "files": [
     "dist/"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [
     "next",
     "nextjs",
