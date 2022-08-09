@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { memo, ReactElement, ReactNode, useRef } from "react";
+import { Fragment, memo, ReactElement, ReactNode, useRef } from "react";
 
 function Sidebar({
   paths,
@@ -24,11 +24,11 @@ function Sidebar({
             </span>
           )}
           {paths.map(({ title, path }) => (
-            <>
-              <Link key={path} href={path}>
+            <Fragment key={path}>
+              <Link href={path}>
                 <a className="text-gray-600 text-sm underline">{title}</a>
               </Link>
-            </>
+            </Fragment>
           ))}
         </nav>
       </div>

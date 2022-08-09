@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { memo, useRef } from "react";
+import { Fragment, memo, useRef } from "react";
 
 function Breadcrumbs({
   pathParts,
@@ -24,12 +24,12 @@ function Breadcrumbs({
           </span>
         )}
         {pathParts.map(({ title, path }) => (
-          <>
-            <Link key={path} href={path}>
+          <Fragment key={path}>
+            <Link href={path}>
               <a className="text-gray-600 text-base underline">{title}</a>
             </Link>
             &nbsp;/&nbsp;
-          </>
+          </Fragment>
         ))}
       </nav>
     </div>
