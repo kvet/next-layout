@@ -118,9 +118,9 @@ export default pageComponentWithLayout(
 );
 ```
 
-## Route params parsing and validation
+### Route params parsing and validation
 
-The lib ships with a simple tool to parse and validate route query params. Here is the example:
+With the error handling approach described above, it is also possible to parse and validate route params. Check the example:
 
 ```tsx
 // pages/with-param-validation/[id].tsx
@@ -132,22 +132,33 @@ import Error from "next/error";
 type PageProps = { id: number }; // Page component props
 type GlobalPageProps = {}; // Global page props received from the '_app.tsx'
 
+function isPositiveInteger(value: string): boolean {
+  return /^\d+$/.test(value);
+}
+
+function safeParsePositiveIntegerParam(
+  param: string | readonly string[] | undefined
+): number | undefined {
+  if (!param || typeof param !== "string" || !isPositiveInteger(param)) {
+    return undefined;
+  }
+  const parsedValue = parseInt(param, 10);
+  return parsedValue !== 0 ? parsedValue : undefined;
+}
+
 export default pageComponentWithLayout<PageProps, GlobalPageProps>(
   function Page({ id }) {
     return <main>This is the page component with the id '{id}'</main>;
   },
   ({ pageComponent: PageComponent, pageProps, mountHook }) => {
-    const resolvedPageProps = mountHook(() =>
-      useRouteParamsResolver(pageProps, {
-        id: (router) => safeParsePositiveIntegerParam(router.query.id),
-      })
-    );
+    const router = mountHook(() => useRouter());
 
-    if (resolvedPageProps.status === 'loading') {
+    if (!router.isReady) {
       return null;
     }
 
-    if (resolvedPageProps.status === 'error') {
+    const id = safeParsePositiveIntegerParam(router.query.id);
+    if (id === undefined) {
       return (
         <Error statusCode={404} />
       );
@@ -155,7 +166,7 @@ export default pageComponentWithLayout<PageProps, GlobalPageProps>(
 
     return (
       <Layout key="layout">
-        <PageComponent {...resolvedPageProps.props} />
+        <PageComponent {...pageProps} id={id} />
       </Layout>
     );
   }
