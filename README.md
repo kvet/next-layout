@@ -173,11 +173,6 @@ export default pageComponentWithLayout<PageProps, GlobalPageProps>(
 );
 ```
 
-There are the following parsers available:
-
-- `safeParseStringParam(router.query[key])` - ensures that the passed query param is a string
-- `safeParsePositiveIntegerParam(router.query[key])` - ensures that the passed query param is a positive integer
-
 ## License
 
 Released under the [MIT License](https://www.opensource.org/licenses/mit-license.php).
