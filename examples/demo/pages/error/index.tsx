@@ -20,8 +20,8 @@ export default pageComponentWithLayout(
           {`
 export default pageComponentWithLayout(
   function Page() { /* ... */ },
-  ({ pageComponent: PageComponent, pageProps, mountHook }) => {
-    const router = mountHook(() => useRouter());
+  function PageLayout({ PageComponent, pageProps }) {
+    const router = useRouter();
 
     if (!router.isReady) {
       return null;
@@ -34,7 +34,7 @@ export default pageComponentWithLayout(
             <h1>Sorry, something is wrong</h1>
             <p>
               This is a basic error handling. Return to the page without the
-              '?show_error=true' query string.{" "}
+              &quot;?show_error=true&quot; query string.{" "}
               <Link href="/error">
                 <a>Page without error</a>
               </Link>
@@ -63,8 +63,8 @@ export default pageComponentWithLayout(
       </main>
     );
   }),
-  ({ pageComponent: PageComponent, pageProps, mountHook }) => {
-    const router = mountHook(() => useRouter());
+  function PageLayout({ PageComponent, pageProps }) {
+    const router = useRouter();
 
     if (!router.isReady) {
       return null;

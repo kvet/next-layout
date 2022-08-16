@@ -1,27 +1,16 @@
-import type { ComponentType, MutableRefObject, ReactElement } from "react";
-
-import type { GetLayoutFn } from "./Layout";
+import { Component } from "react";
+import type { ReactNode, RefObject } from "react";
 
 type LayoutRendererProps = {
-  getLayout: GetLayoutFn<any>;
-  pageComponent: ComponentType<any>;
-  pageProps: any;
-  hooks: MutableRefObject<any[] | undefined>;
+  layoutChildrenRef: RefObject<ReactNode | null>;
 };
 
-export default function LayoutRenderer({
-  getLayout,
-  pageComponent,
-  pageProps,
-  hooks,
-}: LayoutRendererProps): ReactElement | null {
-  let hooksIndexer = 0;
-  return getLayout({
-    pageComponent,
-    pageProps,
-    mountHook: (cb) => {
-      if (!hooks.current) throw new Error("Error while layout hooks bounding");
-      return hooks.current[hooksIndexer++] as ReturnType<typeof cb>;
-    },
-  });
+// NOTE: needed to perform sync update with 'forceUpdate'
+class LayoutRenderer extends Component<LayoutRendererProps> {
+  public render() {
+    const { layoutChildrenRef } = this.props;
+    return layoutChildrenRef.current;
+  }
 }
+
+export default LayoutRenderer

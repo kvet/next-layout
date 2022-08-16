@@ -43,8 +43,8 @@ function safeParsePositiveIntegerParam(
 
 export default pageComponentWithLayout<PageProps, GlobalPageProps>(
   function Page({ id }) { /* ... */ },
-  ({ pageComponent: PageComponent, pageProps, mountHook }) => {
-    const router = mountHook(() => useRouter());
+  function PageLayout({ PageComponent, pageProps }) {
+    const router = useRouter();
 
     if (!router.isReady) {
       return null;
@@ -87,8 +87,8 @@ export default pageComponentWithLayout<PageProps, GlobalPageProps>(
       </main>
     );
   }),
-  ({ pageComponent: PageComponent, pageProps, mountHook }) => {
-    const router = mountHook(() => useRouter());
+  function PageLayout({ PageComponent, pageProps }) {
+    const router = useRouter();
 
     if (!router.isReady) {
       return null;

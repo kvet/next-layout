@@ -17,37 +17,31 @@ export default pageComponentWithLayout(
           {`
 export default pageComponentWithLayout(
   function Page() { /* ... */ },
-  ({ pageComponent: PageComponent, pageProps, mountHook }) => {
+  function PageLayout({ PageComponent, pageProps }) {
     // Data loading simulation
-    const [pathParts, setPathParts] = mountHook(() =>
-      useState<{ title: string; path: string }[]>([])
-    );
-    const [paths, setPaths] = mountHook(() =>
-      useState<{ title: string; path: string }[]>([])
-    );
-    mountHook(() =>
-      useEffect(() => {
-        setTimeout(() => {
-          setPathParts([
-            { title: "Main", path: "/" },
-            { title: "Page with a sidebar", path: "/sidebar" },
-          ]);
-        }, 800);
-      }, [])
-    );
-    mountHook(() =>
-      useEffect(() => {
-        setTimeout(() => {
-          setPaths([
-            { title: "Page with a sidebar", path: "/sidebar" },
-            {
-              title: "Nested page with a fullscreen layout",
-              path: "/sidebar/fullscreen",
-            },
-          ]);
-        }, 1200);
-      }, [])
-    );
+    const [pathParts, setPathParts] = useState<
+      { title: string; path: string }[]
+    >([]);
+    const [paths, setPaths] = useState<{ title: string; path: string }[]>([]);
+    useEffect(() => {
+      setTimeout(() => {
+        setPathParts([
+          { title: "Main", path: "/" },
+          { title: "Page with a sidebar", path: "/sidebar" },
+        ]);
+      }, 800);
+    }, []);
+    useEffect(() => {
+      setTimeout(() => {
+        setPaths([
+          { title: "Page with a sidebar", path: "/sidebar" },
+          {
+            title: "Nested page with a fullscreen layout",
+            path: "/sidebar/fullscreen",
+          },
+        ]);
+      }, 1200);
+    }, []);
 
     return (
       <Layout key="layout">
@@ -71,37 +65,31 @@ export default pageComponentWithLayout(
       </main>
     );
   }),
-  ({ pageComponent: PageComponent, pageProps, mountHook }) => {
+  function PageLayout({ PageComponent, pageProps }) {
     // Data loading simulation
-    const [pathParts, setPathParts] = mountHook(() =>
-      useState<{ title: string; path: string }[]>([])
-    );
-    const [paths, setPaths] = mountHook(() =>
-      useState<{ title: string; path: string }[]>([])
-    );
-    mountHook(() =>
-      useEffect(() => {
-        setTimeout(() => {
-          setPathParts([
-            { title: "Main", path: "/" },
-            { title: "Page with a sidebar", path: "/sidebar" },
-          ]);
-        }, 800);
-      }, [])
-    );
-    mountHook(() =>
-      useEffect(() => {
-        setTimeout(() => {
-          setPaths([
-            { title: "Page with a sidebar", path: "/sidebar" },
-            {
-              title: "Nested page with a fullscreen layout",
-              path: "/sidebar/fullscreen",
-            },
-          ]);
-        }, 1200);
-      }, [])
-    );
+    const [pathParts, setPathParts] = useState<
+      { title: string; path: string }[]
+    >([]);
+    const [paths, setPaths] = useState<{ title: string; path: string }[]>([]);
+    useEffect(() => {
+      setTimeout(() => {
+        setPathParts([
+          { title: "Main", path: "/" },
+          { title: "Page with a sidebar", path: "/sidebar" },
+        ]);
+      }, 800);
+    }, []);
+    useEffect(() => {
+      setTimeout(() => {
+        setPaths([
+          { title: "Page with a sidebar", path: "/sidebar" },
+          {
+            title: "Nested page with a fullscreen layout",
+            path: "/sidebar/fullscreen",
+          },
+        ]);
+      }, 1200);
+    }, []);
 
     return (
       <Layout key="layout">

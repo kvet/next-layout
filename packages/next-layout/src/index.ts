@@ -1,4 +1,5 @@
-export { default as Layout } from "./Layout/Layout";
-export type { AppPropsWithLayout } from "./Layout/Layout";
+export { default as LayoutHost } from "./Layout/LayoutHost";
+export type { LayoutHostProps } from "./Layout/LayoutHost";
+export type { GetLayoutFn, PageComponentWithLayout, AppPropsWithLayout } from "./Layout/types";
 
 export { default as pageComponentWithLayout } from './utils_layout/pageComponentWithLayout';

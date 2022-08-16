@@ -33,10 +33,10 @@ yarn add @kvet/next-layout
 ```tsx
 // pages/_app.tsx
 
-import { AppPropsWithLayout, Layout } from "@kvet/next-layout";
+import { AppPropsWithLayout, LayoutHost } from "@kvet/next-layout";
 
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
-  return <Layout pageComponent={Component} pageProps={pageProps} />;
+  return <LayoutHost PageComponent={Component} pageProps={pageProps} />;
 }
 ```
 
@@ -54,18 +54,14 @@ export default pageComponentWithLayout(
   function Page() {
     return <main>This is the page component</main>;
   },
-  ({ pageComponent: PageComponent, pageProps, mountHook }) => {
+  function PageLayout({ PageComponent, pageProps }) {
     // Data loading simulation
-    const [pathParts, setPathParts] = mountHook(() =>
-      useState<{ title: string; path: string }[]>([])
-    );
-    mountHook(() =>
-      useEffect(() => {
-        setTimeout(() => {
-          setPathParts([{ title: "Main", path: "/" }]);
-        }, 1000);
-      }, [])
-    );
+    const [pathParts, setPathParts] = useState<{ title: string; path: string }[]>([]);
+    useEffect(() => {
+      setTimeout(() => {
+        setPathParts([{ title: "Main", path: "/" }]);
+      }, 1000);
+    }, []);
 
     return (
       <Layout key="layout">
@@ -78,8 +74,8 @@ export default pageComponentWithLayout(
 ```
 
 NOTE:
-- It is required to wrap any React hook usage with a `mountHook` wrapper
 - It is recommended to specify React keys for significant parts of layout to prevent re-render.
+- The PageLayout function here may seem like a functional React component, but it is not under the hood. You can assume that it is a functional React component (to apply eslint checks, for example) but keep in mind that it is just a function that supports hooks definitions.
 
 ## Error handling
 
@@ -96,8 +92,8 @@ export default pageComponentWithLayout(
   function Page() {
     return <main>This is the page component</main>;
   },
-  ({ pageComponent: PageComponent, pageProps, mountHook }) => {
-    const router = mountHook(() => useRouter());
+  function PageLayout({ PageComponent, pageProps }) {
+    const router = useRouter();
 
     if (!router.isReady) {
       return null;
@@ -150,8 +146,8 @@ export default pageComponentWithLayout<PageProps, GlobalPageProps>(
   function Page({ id }) {
     return <main>This is the page component with the id '{id}'</main>;
   },
-  ({ pageComponent: PageComponent, pageProps, mountHook }) => {
-    const router = mountHook(() => useRouter());
+  function PageLayout({ PageComponent, pageProps }) {
+    const router = useRouter();
 
     if (!router.isReady) {
       return null;
