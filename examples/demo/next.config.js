@@ -1,5 +1,5 @@
-const withTM = require("next-transpile-modules")(["@kvet/next-layout"]);
-
-module.exports = withTM({
+/** @type {import('next').NextConfig} */
+module.exports = {
   reactStrictMode: true,
-});
+  transpilePackages: ["@kvet/next-layout"]
+};

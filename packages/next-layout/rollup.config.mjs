@@ -1,6 +1,8 @@
 import dts from 'rollup-plugin-dts'
 import esbuild from 'rollup-plugin-esbuild'
 
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
 const name = require('./package.json').main.replace(/\.js$/, '')
 
 const bundle = config => ({

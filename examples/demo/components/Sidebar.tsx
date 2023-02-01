@@ -25,8 +25,8 @@ function Sidebar({
           )}
           {paths.map(({ title, path }) => (
             <Fragment key={path}>
-              <Link href={path}>
-                <a className="text-gray-600 text-sm underline">{title}</a>
+              <Link href={path} className="text-gray-600 text-sm underline">
+                {title}
               </Link>
             </Fragment>
           ))}

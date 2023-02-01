@@ -45,9 +45,7 @@ export default pageComponentWithLayout(
         </Highlight>
         <p>
           Check the page with sidebar that has nested fullscreen route:{" "}
-          <Link href="/sidebar">
-            <a>Page with a sidebar</a>
-          </Link>
+          <Link href="/sidebar">Page with a sidebar</Link>
         </p>
       </main>
     );

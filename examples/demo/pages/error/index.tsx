@@ -35,9 +35,7 @@ export default pageComponentWithLayout(
             <p>
               This is a basic error handling. Return to the page without the
               &quot;?show_error=true&quot; query string.{" "}
-              <Link href="/error">
-                <a>Page without error</a>
-              </Link>
+              <Link href="/error">Page without error</Link>
             </p>
           </main>
         </Layout>
@@ -56,9 +54,7 @@ export default pageComponentWithLayout(
         </Highlight>
         <p>
           Check error handling in action:{" "}
-          <Link href="/error?show_error=true">
-            <a>Page with error</a>
-          </Link>
+          <Link href="/error?show_error=true">Page with error</Link>
         </p>
       </main>
     );
@@ -78,9 +74,7 @@ export default pageComponentWithLayout(
             <p>
               This is a basic error handling. Return to the page without the
               &quot;?show_error=true&quot; query string.{" "}
-              <Link href="/error">
-                <a>Page without error</a>
-              </Link>
+              <Link href="/error">Page without error</Link>
             </p>
           </main>
         </Layout>

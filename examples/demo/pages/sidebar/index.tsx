@@ -58,9 +58,7 @@ export default pageComponentWithLayout(
         </Highlight>
         <p>
           Check the nested page:{" "}
-          <Link href="/sidebar/fullscreen">
-            <a>Page with a fullscreen layout</a>
-          </Link>
+          <Link href="/sidebar/fullscreen">Page with a fullscreen layout</Link>
         </p>
       </main>
     );

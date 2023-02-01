@@ -53,29 +53,19 @@ export default pageComponentWithLayout(
         <br />
         <p>
           Please check the page with sidebar that has nested fullscreen route:{" "}
-          <Link href="/sidebar">
-            <a>Page with a sidebar</a>
-          </Link>
+          <Link href="/sidebar">Page with a sidebar</Link>
         </p>
         <p>
           Please check the page with error hadling that alternates layout:{" "}
-          <Link href="/error">
-            <a>Page without error</a>
-          </Link>
+          <Link href="/error">Page without error</Link>
           {", "}
-          <Link href="/error?show_error=true">
-            <a>Page with error</a>
-          </Link>
+          <Link href="/error?show_error=true">Page with error</Link>
         </p>
         <p>
           Please check the page with params validation that alternates layout:{" "}
-          <Link href="/query-parsing/1">
-            <a>Page without error</a>
-          </Link>
+          <Link href="/query-parsing/1">Page without error</Link>
           {", "}
-          <Link href="/query-parsing/test">
-            <a>Page with error</a>
-          </Link>
+          <Link href="/query-parsing/test">Page with error</Link>
         </p>
       </main>
     );

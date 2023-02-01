@@ -59,9 +59,7 @@ export default pageComponentWithLayout<PageProps, GlobalPageProps>(
             <p>
               This is a basic error handling. Return to the page with the proper
               &apos;id&apos; query parameter.{" "}
-              <Link href="/query-parsing/1">
-                <a>Page without error</a>
-              </Link>
+              <Link href="/query-parsing/1">Page without error</Link>
             </p>
           </main>
         </Layout>
@@ -80,9 +78,7 @@ export default pageComponentWithLayout<PageProps, GlobalPageProps>(
         </Highlight>
         <p>
           Check query parsing in action:{" "}
-          <Link href="/query-parsing/test">
-            <a>Page with wrong query param type</a>
-          </Link>
+          <Link href="/query-parsing/test">Page with wrong query param type</Link>
         </p>
       </main>
     );
@@ -103,9 +99,7 @@ export default pageComponentWithLayout<PageProps, GlobalPageProps>(
             <p>
               This is a basic error handling. Return to the page with the proper
               &apos;id&apos; query parameter.{" "}
-              <Link href="/query-parsing/1">
-                <a>Page without error</a>
-              </Link>
+              <Link href="/query-parsing/1">Page without error</Link>
             </p>
           </main>
         </Layout>
