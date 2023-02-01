@@ -1,8 +1,11 @@
 import Link from "next/link";
-import { memo, useRef } from "react";
+import { memo, useEffect, useState } from "react";
 
 function Navbar() {
-  const date = useRef(new Date(Date.now()).toLocaleString());
+  const [date, setDate] = useState('[...]')
+  useEffect(() => {
+    setDate(new Date(Date.now()).toLocaleString());
+  }, []);
 
   return (
     <div className="border-b border-gray-300 pt-2 pb-4 px-8 group">
@@ -10,7 +13,7 @@ function Navbar() {
         This is a navbar. Note that a focused element maintains its state on the
         route change event.{" "}
         <span className="text-gray-400">
-          (Layout rendered at: {date.current})
+          (Layout rendered at: {date})
         </span>
       </div>
       <nav className="flex justify-center space-x-4">

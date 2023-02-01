@@ -381,9 +381,6 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
-"@kvet/next-layout@file:packages/next-layout":
-  version "0.2.0"
-
 "@next/env@13.1.6":
   version "13.1.6"
   resolved "https://registry.yarnpkg.com/@next/env/-/env-13.1.6.tgz#c4925609f16142ded1a5cb833359ab17359b7a93"

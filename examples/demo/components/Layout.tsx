@@ -1,7 +1,10 @@
-import { memo, ReactElement, ReactNode, useRef } from "react";
+import { memo, ReactElement, ReactNode, useEffect, useState } from "react";
 
 function Layout({ children }: { children: ReactNode }): ReactElement {
-  const date = useRef(new Date(Date.now()).toLocaleString());
+  const [date, setDate] = useState('[...]')
+  useEffect(() => {
+    setDate(new Date(Date.now()).toLocaleString());
+  }, []);
 
   return (
     <div>
@@ -21,7 +24,7 @@ function Layout({ children }: { children: ReactNode }): ReactElement {
         . Note that the layout component maintains its state on the route change
         event.{" "}
         <span className="text-gray-400">
-          (The layout rendered at: {date.current})
+          (The layout rendered at: {date})
         </span>
       </div>
     </div>

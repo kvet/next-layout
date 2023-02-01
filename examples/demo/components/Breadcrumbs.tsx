@@ -1,12 +1,15 @@
 import Link from "next/link";
-import { Fragment, memo, useRef } from "react";
+import { Fragment, memo, useEffect, useState } from "react";
 
 function Breadcrumbs({
   pathParts,
 }: {
   pathParts: { title: string; path: string }[];
 }) {
-  const date = useRef(new Date(Date.now()).toLocaleString());
+  const [date, setDate] = useState('[...]')
+  useEffect(() => {
+    setDate(new Date(Date.now()).toLocaleString());
+  }, []);
 
   return (
     <div className="border-b border-gray-300 pt-2 pb-4 px-8 group">
@@ -14,7 +17,7 @@ function Breadcrumbs({
         This is breadcrumbs. Note that it is not a &quot;god&quot; component.
         Data loading is decoupled by the use of hooks inside the page layout.{" "}
         <span className="text-gray-400">
-          (Breadcrumbs rendered at: {date.current})
+          (Breadcrumbs rendered at: {date})
         </span>
       </div>
       <nav className="flex justify-start">
