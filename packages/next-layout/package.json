@@ -1,7 +1,7 @@
 {
   "name": "@kvet/next-layout",
   "description": "A layout component for NextJS",
-  "version": "0.3.0-experimental.1",
+  "version": "0.3.0",
   "license": "MIT",
   "author": {
     "name": "Iurii Orlov",
